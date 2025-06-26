@@ -1,0 +1,87 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: frontend-policy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: frontend-repo
+  policy:
+    semver:
+      range: 1.0.x
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: frontend-repo
+  namespace: flux-system
+spec:
+  interval: 1m
+  image: ronaldorb/jdm-cars-frontend
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: backend-policy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: backend-repo
+  policy:
+    semver:
+      range: 1.0.x
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: backend-repo
+  namespace: flux-system
+spec:
+  interval: 1m
+  image: ronaldorb/jdm-cars-backend
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: db-policy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: db-repo
+  policy:
+    semver:
+      range: 1.0.x
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: db-repo
+  namespace: flux-system
+spec:
+  interval: 1m
+  image: ronaldorb/jdm-cars-db
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: jdmapp-automation
+  namespace: flux-system
+spec:
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: gitops-repo
+  git:
+    commit:
+      author:
+        email: "FluxCD@example.com"
+        name: "FluxCD"
+      messageTemplate: "Update image versions for JDM Cars App"
+    push:
+      branch: main

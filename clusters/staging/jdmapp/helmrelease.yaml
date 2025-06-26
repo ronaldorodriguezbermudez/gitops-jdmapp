@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: jdmapp
+  namespace: staging
+spec:
+  releaseName: jdmapp
+  chart:
+    spec:
+      chart: jdmapp
+      version: 0.1.1 
+      sourceRef:
+        kind: HelmRepository
+        name: jdmapp-repo
+        namespace: flux-system
+  interval: 1m
+  values:
+    namespace: jdmapp
+    frontend:
+      image:
+        name: ronaldorb/jdm-cars-frontend
+        tag: v1.0.10
+    backend:
+      image:
+        name: ronaldorb/jdm-cars-backend
+        tag: v1.0.10
+    db:
+      image:
+        name: ronaldorb/jdm-cars-db
+        tag: v1.0.10
