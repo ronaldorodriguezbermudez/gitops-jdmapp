@@ -15,7 +15,7 @@ spec:
         namespace: flux-system
   interval: 1m
   values:
-    namespace: jdmapp
+    namespace: staging
     frontend:
       image:
         name: ronaldorb/jdm-cars-frontend
