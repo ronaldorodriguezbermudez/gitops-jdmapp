@@ -1,4 +1,4 @@
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: frontend-policy
@@ -6,12 +6,14 @@ metadata:
 spec:
   imageRepositoryRef:
     name: frontend-repo
+  filterTags:
+    pattern: '^v1\.0\.\d+$'
   policy:
     semver:
       range: 1.0.x
 
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: frontend-repo
@@ -21,7 +23,7 @@ spec:
   image: ronaldorb/jdm-cars-frontend
 
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: backend-policy
@@ -29,12 +31,14 @@ metadata:
 spec:
   imageRepositoryRef:
     name: backend-repo
+  filterTags:
+    pattern: '^v1\.0\.\d+$'
   policy:
     semver:
       range: 1.0.x
 
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: backend-repo
@@ -44,7 +48,7 @@ spec:
   image: ronaldorb/jdm-cars-backend
 
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: db-policy
@@ -52,12 +56,14 @@ metadata:
 spec:
   imageRepositoryRef:
     name: db-repo
+  filterTags:
+    pattern: '^v1\.0\.\d+$'
   policy:
     semver:
       range: 1.0.x
 
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: db-repo
@@ -76,7 +82,7 @@ spec:
   interval: 1m
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: gitops-repo
   git:
     commit:
       author:
@@ -87,4 +93,3 @@ spec:
       branch: main
   update:
     path: ./clusters/my-cluster/jdmapp
-    strategy: Setters
