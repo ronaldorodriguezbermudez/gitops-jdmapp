@@ -76,7 +76,7 @@ spec:
   interval: 1m
   sourceRef:
     kind: GitRepository
-    name: gitops-repo
+    name: gitops-jdmapp
   git:
     commit:
       author:
