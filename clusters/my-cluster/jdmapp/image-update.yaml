@@ -76,7 +76,7 @@ spec:
   interval: 1m
   sourceRef:
     kind: GitRepository
-    name: gitops-jdmapp
+    name: flux-system
   git:
     commit:
       author:
