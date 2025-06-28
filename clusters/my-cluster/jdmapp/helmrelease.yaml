@@ -19,12 +19,12 @@ spec:
     frontend:
       image:
         name: ronaldorb/jdm-cars-frontend
-        tag: ronaldorb/jdm-cars-frontend:v1.0.13 # {"$imagepolicy": "flux-system:frontend-policy"}
+        tag: v1.0.13 # {"$imagepolicy": "flux-system:frontend-policy"}
     backend:
       image:
         name: ronaldorb/jdm-cars-backend
-        tag: ronaldorb/jdm-cars-backend:v1.0.13 # {"$imagepolicy": "flux-system:backend-policy"}
+        tag: v1.0.13 # {"$imagepolicy": "flux-system:backend-policy"}
     db:
       image:
         name: ronaldorb/jdm-cars-db
-        tag: ronaldorb/jdm-cars-db:v1.0.13 # {"$imagepolicy": "flux-system:db-policy"}
+        tag: v1.0.13 # {"$imagepolicy": "flux-system:db-policy"}
