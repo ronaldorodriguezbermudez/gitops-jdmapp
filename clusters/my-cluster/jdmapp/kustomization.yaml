@@ -1,5 +1,0 @@
-resources:
-  - gitrepository.yaml
-  - helmrelease.yaml
-  - helmrepository.yaml
-  - image-update.yaml

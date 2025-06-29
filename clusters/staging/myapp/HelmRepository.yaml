@@ -4,5 +4,5 @@ metadata:
   name: jdmapp-repo
   namespace: flux-system
 spec:
-  interval: 1m
   url: https://ronaldorodriguezbermudez.github.io/helm-chart-app/
+  interval: 1m
