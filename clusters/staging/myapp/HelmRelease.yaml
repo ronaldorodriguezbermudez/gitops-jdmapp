@@ -6,7 +6,6 @@ metadata:
 spec:
   interval: 1m
   targetNamespace: jdmapp
-  createNamespace: false
   chart:
     spec:
       chart: jdmapp
