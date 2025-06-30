@@ -1,0 +1,14 @@
+# .github/workflows/cron-test.yml
+name: Cron Test
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print date
+        run: echo "Cron running at $(date)"
