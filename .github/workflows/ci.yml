@@ -15,17 +15,13 @@ jobs:
         with:
           token: ${{ secrets.GH_PAT }}
 
-      - name: Install yq
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y yq
+    
 
       - name: Get latest chart version
         id: get_version
         run: |
           curl -s https://ronaldorodriguezbermudez.github.io/helm-chart-app/index.yaml > index.yaml
           version=$(yq e '.entries.jdmapp[0].version' index.yaml)
-          echo "version=$version"
           echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Update HelmRelease version
@@ -41,4 +37,4 @@ jobs:
           git config user.email "actions@github.com"
           git add ./clusters/staging/myapp/HelmRelease.yaml
           git diff --cached --quiet || git commit -m "Update HelmRelease version to ${{ steps.get_version.outputs.version }}"
-          git push https://x-access-token:${GH_PAT}@github.com/ronaldorodriguezbermudez/gitops-jdmapp.git HEAD:main
+          git push 
